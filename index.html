@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0b1018"><meta name="description" content="Central experimental de chamados integrada ao GitHub Issues.">
+<title>Chamados | Central de atendimento</title>
+<style>
+:root{font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;color:#eaf0f7;background:#090d14;font-synthesis:none}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(circle at 78% 0%,#18293c 0,transparent 36%),#090d14}button,input,select,textarea{font:inherit}
+a{color:#a9cfff;text-decoration:none}a:hover{text-decoration:underline}
+header{border-bottom:1px solid #26303b;background:#0d141dbd;backdrop-filter:blur(12px)}
+header .wrap{max-width:1100px;margin:auto;padding:20px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{display:flex;align-items:center;gap:12px;font-weight:750;letter-spacing:-.02em}.mark{height:37px;width:37px;background:#e4efff;border-radius:12px;color:#0d1623;display:grid;place-items:center;font-weight:900}.brand small{display:block;font-size:11px;font-weight:500;color:#94a4b7;letter-spacing:0;margin-top:3px}
+main{max-width:1100px;margin:0 auto;padding:56px 24px 80px}.eyebrow{color:#9dbbe4;font-size:12px;font-weight:750;text-transform:uppercase;letter-spacing:.13em}
+h1{font-size:clamp(30px,4vw,48px);letter-spacing:-.05em;line-height:1.1;margin:12px 0 14px}p{color:#a5b2c2;line-height:1.7}
+.hero{max-width:730px;margin-bottom:34px}.layout{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(260px,.75fr);gap:22px}
+.panel{border:1px solid #283543;background:#101924;border-radius:19px;box-shadow:0 20px 60px #0002;padding:28px}.panel h2{margin:0 0 6px;font-size:19px;letter-spacing:-.02em}.panel>p{margin:0 0 24px;font-size:14px}
+label{display:block;font-size:13px;color:#e5ecf5;font-weight:650;margin:18px 0 8px}
+input,select,textarea{border:1px solid #344353;color:#eef5ff;width:100%;background:#0b131d;border-radius:10px;padding:13px 14px;outline:none;transition:border .15s,box-shadow .15s}
+input:focus,select:focus,textarea:focus{border-color:#74aaf0;box-shadow:0 0 0 3px #4a8beb30}textarea{min-height:145px;resize:vertical}
+button,.button{border:none;background:#e4eeff;color:#101b2a;border-radius:10px;min-height:45px;padding:12px 18px;font-weight:750;cursor:pointer;display:inline-flex;justify-content:center;align-items:center;gap:8px;text-decoration:none}
+button:hover,.button:hover{background:#cbdfff;text-decoration:none}.submit{width:100%;margin-top:24px}.button.secondary{background:#1c2a3a;color:#e3ecf6;border:1px solid #344353}.button.secondary:hover{background:#26394b}
+.muted{font-size:12px;color:#91a3b6}.step{display:flex;align-items:start;gap:12px;margin:22px 0}.num{border:1px solid #3c5269;border-radius:10px;min-width:31px;height:31px;display:grid;place-items:center;color:#b3d1f9;font-size:12px;font-weight:800}.step strong{font-size:14px}.step p{font-size:13px;margin:4px 0 0}.footnote{border-top:1px solid #283543;padding-top:22px;margin-top:25px}.badges{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}.chip{border:1px solid #35485a;border-radius:100px;font-size:11px;color:#acc3d7;padding:6px 10px}.error{color:#ffadb3;font-size:13px;margin-top:10px;display:none}
+footer{max-width:1100px;margin:0 auto;padding:22px 24px 40px;border-top:1px solid #283543;color:#8493a5;font-size:12px}
+@media(max-width:780px){.layout{grid-template-columns:1fr}main{padding-top:36px}.panel{padding:21px}header .wrap{padding:16px 20px}}
+</style>
+</head>
+<body>
+<header><div class="wrap"><div class="brand"><span class="mark">C</span><span>Chamados<small>Central de atendimento · Protótipo</small></span></div><a href="https://github.com/carlos-machado14/chamados/issues" target="_blank" rel="noopener noreferrer">Acompanhar no GitHub ↗</a></div></header>
+<main>
+<div class="hero"><div class="eyebrow">Atendimento simplificado</div><h1>Como podemos ajudar?</h1><p>Descreva sua solicitação. Vamos preparar o chamado para você revisar e enviar pelo GitHub, onde poderá acompanhar respostas e atualizações.</p></div>
+<div class="layout">
+<section class="panel">
+<h2>Abrir novo chamado</h2><p>Preencha os dados abaixo para preparar sua solicitação.</p>
+<form id="ticket">
+<label for="kind">Tipo de solicitação</label>
+<select id="kind" required><option value="Bug">Reportar problema</option><option value="Melhoria">Solicitar melhoria</option><option value="Suporte">Solicitar suporte</option></select>
+<label for="subject">Assunto</label><input id="subject" required maxlength="120" placeholder="Ex.: Erro ao acessar o sistema">
+<label for="system">Sistema / produto</label><input id="system" required maxlength="100" placeholder="Ex.: Sistema de testes">
+<label for="impact">Impacto</label><select id="impact"><option>Baixo</option><option selected>Médio</option><option>Alto</option><option>Crítico</option></select>
+<label for="description">Descrição</label><textarea id="description" required maxlength="4000" placeholder="O que aconteceu? Qual era o resultado esperado?"></textarea>
+<p class="error" id="error" role="alert"></p>
+<button class="submit" type="submit">Continuar no GitHub →</button>
+<p class="muted">Nenhum dado é armazenado neste site. Você confirmará a criação do chamado no GitHub.</p>
+</form>
+</section>
+<aside class="panel">
+<h2>Como funciona</h2>
+<div class="badges"><span class="chip">Teste inicial</span><span class="chip">GitHub Issues</span></div>
+<div class="step"><span class="num">01</span><div><strong>Descreva o problema</strong><p>Preencha o formulário com as informações do chamado.</p></div></div>
+<div class="step"><span class="num">02</span><div><strong>Confirme no GitHub</strong><p>Você será redirecionado para revisar e enviar a Issue usando uma conta com acesso ao repositório.</p></div></div>
+<div class="step"><span class="num">03</span><div><strong>Acompanhe as respostas</strong><p>Comentários e atualizações ficam disponíveis na Issue. O GitHub pode enviar notificações por e-mail.</p></div></div>
+<div class="footnote"><a class="button secondary" href="https://github.com/carlos-machado14/chamados/issues" target="_blank" rel="noopener noreferrer">Consultar Issues ↗</a><p class="muted">Este protótipo não oferece login independente, privacidade por usuário ou criação silenciosa de Issues.</p></div>
+</aside>
+</div>
+</main>
+<footer>Chamados · Prova de conceito com GitHub Pages + Issues. Não utilize dados sensíveis durante os testes.</footer>
+<script>
+const form=document.getElementById('ticket');
+form.addEventListener('submit',event=>{
+ event.preventDefault();
+ if(!form.reportValidity())return;
+ const kind=document.getElementById('kind').value;
+ const subject=document.getElementById('subject').value.trim();
+ const system=document.getElementById('system').value.trim();
+ const impact=document.getElementById('impact').value;
+ const description=document.getElementById('description').value.trim();
+ const error=document.getElementById('error');error.style.display='none';
+ if(!subject||!system||!description){error.textContent='Preencha todos os campos obrigatórios.';error.style.display='block';return;}
+ const body=['## Sistema',system,'','## Impacto',impact,'','## Descrição',description,'','---','Enviado pelo protótipo Chamados (GitHub Pages).'].join('\n');
+ const params=new URLSearchParams({title:'['+kind.toUpperCase()+'] '+subject,body});
+ const url='https://github.com/carlos-machado14/chamados/issues/new?'+params.toString();
+ if(url.length>7500){error.textContent='Descrição muito longa para encaminhar por URL. Reduza o texto e tente novamente.';error.style.display='block';return;}
+ window.location.assign(url);
+});
+</script>
+</body></html>
